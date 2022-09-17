@@ -106,7 +106,7 @@ def mars_facts():
     # use pandas to easily convert the dataframe into html-friendly form
 
 def hemispheres(browser):
-    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    url = 'https://marshemispheres.com/'
     browser.visit(url)
     # visit url
 
