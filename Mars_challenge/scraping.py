@@ -26,7 +26,7 @@ def scrape_all():
       "featured_image": featured_image(browser),
       "facts": mars_facts(),
       "last_modified": dt.datetime.now(),
-      "hemispheres": hemispheres(browser)}}
+      "hemispheres": hemispheres(browser)}
 
     browser.quit()
     return data
@@ -49,7 +49,7 @@ def mars_news(browser):
         # notice 'slide_elem' is the variable assigned to look for the '<div />' tag and its descendants? This is our parent element
         # meaning it holds all other elements within it, and we'll reference it when we want to filter search results even further.
         # The '.' is used for selecting classes, such as 'list_text'
-        slide_elem.find('div', class_='content_title')
+        #slide_elem.find('div', class_='content_title')
         # here, we chain 'find()' on to the previously assigned variable 'slide_elem', specifying a search in the variable for the 
         # specific data in a '<div />' with class 'content_title'
 
@@ -114,13 +114,33 @@ def hemispheres(browser):
     # create a list for hemisphere image urls
 
     for i in range(4):
+        #browser.find_by_css('a.product-item h3')[i].click()
+        #element = browser.links.find_by_text('Sample').first
+        #img_url = element['href']
+        #title = browser.find_by_css("h2.title").text
+
+        # visit the initial site
+        html = browser.html
+        img_soup = soup(html, 'html.parser')
+
+        # grab the link at range number
+        img_box = img_soup.find('div', class_='collapsible results').find_all('div', class_='item')
+        image_link = img_box[i].find('a').get('href')
+        image_title = img_box[i].find('h3').text
+
+        # visit the new link
+        new_img_url_href = url + image_link
+        browser.visit(new_img_url_href)
+        html = browser.html
+        img_soup = soup(html, 'html.parser')
+
+        # grab the href for the jpg
+        new_img_url = img_soup.find('div', class_='downloads').find('a').get('href')
+        img_url = url + new_img_url
+
         hemispheres = {}
-        browser.find_by_css('a.product-item h3')[i].click()
-        element = browser.links.find_by_text('Sample').first
-        img_url = element['href']
-        title = browser.find_by_css("h2.title").text
         hemispheres["img_url"] = img_url
-        hemispheres["title"] = title
+        hemispheres["title"] = image_title
         hemisphere_image_urls.append(hemispheres)
         browser.back()
     return hemisphere_image_urls

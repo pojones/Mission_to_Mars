@@ -97,7 +97,7 @@
     {
      "data": {
       "text/plain": [
-       "<div class=\"content_title\">Heat and Dust Help Launch Martian Water Into Space, Scientists Find</div>"
+       "<div class=\"content_title\">NASA's Curiosity Keeps Rolling As Team Operates Rover From Home</div>"
       ]
      },
      "execution_count": 5,
@@ -120,7 +120,7 @@
     {
      "data": {
       "text/plain": [
-       "'Heat and Dust Help Launch Martian Water Into Space, Scientists Find'"
+       "\"NASA's Curiosity Keeps Rolling As Team Operates Rover From Home\""
       ]
      },
      "execution_count": 6,
@@ -143,7 +143,7 @@
     {
      "data": {
       "text/plain": [
-       "'Scientists using an instrument aboard NASA’s Mars Atmosphere and Volatile EvolutioN, or MAVEN, spacecraft have discovered that water vapor near the surface of the Red Planet is lofted higher into the atmosphere than anyone expected was possible. '"
+       "'The team has learned to meet new challenges as they work remotely on the Mars mission.'"
       ]
      },
      "execution_count": 7,
@@ -401,7 +401,7 @@
        "<link href=\"js/fancyBox/jquery.fancybox.css?v=2.1.5\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\"/>\n",
        "<link href=\"js/fancyBox/helpers/jquery.fancybox-thumbs.css?v=1.0.7\" rel=\"stylesheet\" type=\"text/css\"/>\n",
        "<script src=\"js/fancyBox/helpers/jquery.fancybox-thumbs.js?v=1.0.7\" type=\"text/javascript\"></script>\n",
-       "<div class=\"fancybox-overlay fancybox-overlay-fixed\" style=\"width: auto; height: auto; display: block;\"><div class=\"fancybox-wrap fancybox-desktop fancybox-type-image\" style=\"width: 670px; height: 380px; position: absolute; top: 273px; left: 105px; opacity: 0.100036; overflow: hidden;\" tabindex=\"-1\"><div class=\"fancybox-skin\" style=\"padding: 15px; width: auto; height: auto;\"><div class=\"fancybox-outer\"><div class=\"fancybox-inner\" style=\"overflow: visible; width: 640px; height: 350px;\"><img alt=\"\" class=\"fancybox-image\" src=\"image/featured/mars1.jpg\"/></div></div></div></div></div></body></html>"
+       "<div class=\"fancybox-overlay fancybox-overlay-fixed\" style=\"width: auto; height: auto; display: block;\"><div class=\"fancybox-wrap fancybox-desktop fancybox-type-image fancybox-opened\" style=\"width: 670px; height: auto; position: absolute; top: 273px; left: 105px; opacity: 1; overflow: visible;\" tabindex=\"-1\"><div class=\"fancybox-skin\" style=\"padding: 15px; width: auto; height: auto;\"><div class=\"fancybox-outer\"><div class=\"fancybox-inner\" style=\"overflow: visible; width: 640px; height: 350px;\"><img alt=\"\" class=\"fancybox-image\" src=\"image/featured/mars1.jpg\"/></div></div><a class=\"fancybox-item fancybox-close\" href=\"javascript:;\" title=\"Close\"></a></div></div></div></body></html>"
       ]
      },
      "execution_count": 10,
@@ -622,7 +622,7 @@
    "outputs": [],
    "source": [
     "# 1. Use browser to visit the URL \n",
-    "url = 'https://marshemispheres.com/'\n",
+    "url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'\n",
     "\n",
     "browser.visit(url)"
    ]
@@ -630,43 +630,9 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "0ab34ea3",
+   "id": "1675aaeb",
    "metadata": {},
    "outputs": [],
-   "source": [
-    "# 2. Create a list to hold the images and titles.\n",
-    "hemisphere_image_urls = []\n",
-    "\n",
-    "# 3. Write code to retrieve the image urls and titles for each hemisphere.\n",
-    "for x in range(0,4):\n",
-    "    \n",
-    "    html = browser.html\n",
-    "    img_soup = soup(html, 'html.parser')\n",
-    "    img_box = img_soup.find('div', class_= 'collapsible results').find_all('div', class_='item')\n",
-    "    image_link = img_box[x].find('a').get('href')\n",
-    "    image_title = img_box[x].find('h3').text\n",
-    "    \n",
-    "    # Get new image link\n",
-    "    new_img_href = url + image_link\n",
-    "    browser.visit(new_img_href)\n",
-    "    \n",
-    "    html = browser.html\n",
-    "    img_soup = soup(html, 'html.parser')\n",
-    "    new_img = img_soup.find('div', class_= 'downloads').find('a').get('href')\n",
-    "    jpeg_url = url + new_img\n",
-    "    \n",
-    "    # Create dictionary with images and titles\n",
-    "    hemisphere_images = {}\n",
-    "    hemisphere_images['img_url'] = jpeg_url\n",
-    "    hemisphere_images['image_title'] = image_title\n",
-    "    hemisphere_image_urls.append(hemisphere_images)\n",
-    "    browser.back()"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "22dc64e9",
-   "metadata": {},
    "source": [
     "# 2. Create a list to hold the images and titles.\n",
     "hemisphere_image_urls = []\n",
@@ -704,14 +670,14 @@
     {
      "data": {
       "text/plain": [
-       "[{'img_url': 'https://marshemispheres.com/images/full.jpg',\n",
-       "  'image_title': 'Cerberus Hemisphere Enhanced'},\n",
-       " {'img_url': 'https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg',\n",
-       "  'image_title': 'Schiaparelli Hemisphere Enhanced'},\n",
-       " {'img_url': 'https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg',\n",
-       "  'image_title': 'Syrtis Major Hemisphere Enhanced'},\n",
-       " {'img_url': 'https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg',\n",
-       "  'image_title': 'Valles Marineris Hemisphere Enhanced'}]"
+       "[{'img_url': 'https://astrogeology.usgs.gov//cache/images/f5e372a36edfa389625da6d0cc25d905_cerberus_enhanced.tif_full.jpg',\n",
+       "  'title': 'Cerberus Hemisphere Enhanced'},\n",
+       " {'img_url': 'https://astrogeology.usgs.gov//cache/images/3778f7b43bbbc89d6e3cfabb3613ba93_schiaparelli_enhanced.tif_full.jpg',\n",
+       "  'title': 'Schiaparelli Hemisphere Enhanced'},\n",
+       " {'img_url': 'https://astrogeology.usgs.gov//cache/images/555e6403a6ddd7ba16ddb0e471cadcf7_syrtis_major_enhanced.tif_full.jpg',\n",
+       "  'title': 'Syrtis Major Hemisphere Enhanced'},\n",
+       " {'img_url': 'https://astrogeology.usgs.gov//cache/images/b3c7c6c9138f57b4756be9b9c43e3a48_valles_marineris_enhanced.tif_full.jpg',\n",
+       "  'title': 'Valles Marineris Hemisphere Enhanced'}]"
       ]
      },
      "execution_count": 17,
@@ -738,7 +704,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "f8ace31c",
+   "id": "2ce88181",
    "metadata": {},
    "outputs": [],
    "source": []
